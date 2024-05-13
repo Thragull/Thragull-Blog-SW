@@ -2,7 +2,7 @@
     width: 100%;
 }
 .card{
-    width: 15vw;
+    min-width: 15vw;
     border-color: limegreen;
 }
 .card-body {

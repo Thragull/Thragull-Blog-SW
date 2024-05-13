@@ -1,0 +1,14 @@
+.accordion-button,
+.accordion-button.show,
+.accordion-button.collapsed{
+    color: white !important;
+    font-size: 2.5vw;
+    font-family: 'Star Wars', sans-serif;
+    background-color: #0a1128d0 !important;
+}
+.accordion-header{
+    background-color: #0a1128d0!important;
+}
+.accordion-body{
+    background-color: rgba(255, 255, 255, 0)!important;
+}
