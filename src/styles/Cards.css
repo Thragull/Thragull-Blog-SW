@@ -2,7 +2,8 @@
 .accordion-button.show,
 .accordion-button.collapsed{
     color: white !important;
-    font-size: 2.5vw;
+    text-shadow: white 1px 1px 6px;
+    font-size: 2rem;
     font-family: 'Star Wars', sans-serif;
     background-color: #0a1128d0 !important;
 }

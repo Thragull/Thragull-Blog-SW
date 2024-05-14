@@ -47,3 +47,8 @@ body{
 footer{
     background-color: #0A1128
 }
+@media(max-width: 750px){
+    .navbar-brand{
+        font-size: 4vw;
+    }
+}
