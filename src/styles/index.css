@@ -52,3 +52,24 @@ footer{
         font-size: 4vw;
     }
 }
+
+::-webkit-scrollbar {
+    height: 10px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #f53737;
+    border-radius: 5px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #ff0000;
+    border-color: #ff0000;
+    box-shadow: 0 0 10px #ff0000;
+}
+::-webkit-scrollbar-track:vertical {
+    background-color: #0A1128;
+}

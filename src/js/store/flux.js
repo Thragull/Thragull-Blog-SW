@@ -5,7 +5,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			characters:[],
 			starships:[],
 			planets:[],
-			vehicles:[]
+			vehicles:[],
+			singleCharacter:{},
+			singleStarship:{},
+			singlePlanet:{},
+			singleVehicle:{},
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -37,7 +41,40 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then((response)=> response.json())
 				.then((data) => {setStore({vehicles: data['results']})})
 				.catch((err) => err)
-			}
+			},
+			getSingleCharacter: (id) => {
+				return new Promise ((resolve, reject) => {fetch("https://www.swapi.tech/api/people/"+id)
+					.then((response)=> response.json())
+					.then((data) => {setStore({singleCharacter: data['result']});
+									resolve();
+								})
+					.catch((err) => reject(err))
+				});
+			},
+			getSingleStarship: (id) => {
+				return new Promise ((resolve, reject) => {fetch("https://www.swapi.tech/api/starships/"+id)
+				.then((response)=> response.json())
+				.then((data) => {setStore({singleStarship: data['result']})
+								resolve();
+							})
+				.catch((err) => reject(err))
+				});
+			},
+			getSinglePlanet: (id) => {
+				return new Promise ((resolve, reject) => {fetch("https://www.swapi.tech/api/planets/"+id)
+				.then((response)=> response.json())
+				.then((data) => {setStore({singlePlanet: data['result']})
+								resolve();
+							})
+				.catch((err) => reject(err))
+				});
+			},
+			getSingleVehicle: (id) => {
+				fetch("https://www.swapi.tech/api/vehicles/"+id)
+				.then((response)=> response.json())
+				.then((data) => {setStore({singleVehicle: data['result']})})
+				.catch((err) => err)
+			},
 		}
 	};
 };

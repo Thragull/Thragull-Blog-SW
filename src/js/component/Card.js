@@ -1,7 +1,15 @@
 import React from 'react';
 import "../../styles/Card.css"
+import { useNavigate } from 'react-router-dom';
 
 export const Card = (props) => {
+
+  const navigate = useNavigate()
+
+  const handleLearnMore = () => {
+    
+  }
+
   return (
     <div className='card rounded-4 mx-2 d-flex flex-column'>
         <img 

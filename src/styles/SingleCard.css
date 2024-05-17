@@ -1,0 +1,13 @@
+.bgSingleCard{
+    max-width: 80vw;
+    margin: 0 auto;
+    background-color: #0a1128c7;
+}
+.singleName{
+    color: white !important;
+    text-shadow: white 1px 1px 6px;
+    font-family: 'Star Wars', sans-serif;
+}
+.dataText{
+    color: white;
+}
