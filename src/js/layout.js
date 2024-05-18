@@ -3,12 +3,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./views/Home";
-import { Single } from "./views/single";
+import { Favourites } from "./views/Favourites";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/Navbar";
 import { Footer } from "./component/Footer";
-import { Cards } from "./component/Cards";
 import { SingleCharacter } from "./component/SingleCharacter";
 import { SingleStarship } from "./component/SingleStarship";
 import { SinglePlanet } from "./component/SinglePlanet";
@@ -32,8 +31,8 @@ const Layout = () => {
 							<Route path="/starships/:id" element={<SingleStarship />} />
 							<Route path="/planets/:id" element={<SinglePlanet />} />
 							<Route path="/vehicles/:id" element={<SingleVehicle />} />
+							<Route path="/favourites" element={<Favourites />} />
 							<Route path="*" element={<h1>Not found!</h1>} />
-							<Route path="/testing" element={<Cards />} />
 						</Routes>
 					</div>
 					<Footer />

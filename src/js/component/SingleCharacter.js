@@ -13,6 +13,7 @@ export const SingleCharacter = () =>{
     const {store, actions} = useContext(Context)
     const [dataLoaded, setDataLoaded] = useState(false)
     const [planetLoaded, setPlanetLoaded] = useState(false)
+    const [isFavourite, setIsFavourite] = useState(false)
     const {id} = useParams()
     
     useEffect(()=>{
@@ -31,10 +32,30 @@ export const SingleCharacter = () =>{
         }
     }, [store.singleCharacter, dataLoaded, planetLoaded])
 
+    useEffect(() => {
+        if (dataLoaded && planetLoaded){
+            setIsFavourite(store.favourites.some(fav => 
+                fav.id === store.singleCharacter.uid && 
+                fav.name === store.singleCharacter.properties.name && 
+                fav.category === "characters"
+            ))
+        } 
+    }, [store.favourites, dataLoaded, planetLoaded, store.singleCharacter])
+
     const handleReturn = () => {
         navigate("/")
     }
     
+    const clickFavourite = () => {
+        const favourite = {
+          id: store.singleCharacter.uid,
+          name: store.singleCharacter.properties.name,
+          category: "characters"
+        }
+        actions.handleFavourite(favourite)
+        isFavourite ? setIsFavourite(false) : setIsFavourite(true)
+    }
+
     if (dataLoaded && planetLoaded){
         return(
             <div className="container row bgSingleCard rounded-5 py-lg-5 py-md-4 py-3">
@@ -46,7 +67,9 @@ export const SingleCharacter = () =>{
                 <div className="col-12 col-lg-8 row dataText mt-3 mt-lg-0">
                     <div className="col-12 row">
                         <h1 className="singleName text-center col-8 col-lg-10">{store.singleCharacter.properties.name.toLowerCase()}</h1>
-                        <button href="#" className="btn me-3 like-single-btn col-4 col-lg-2 ms-auto"><i className="fa-regular fa-heart"></i></button>
+                        <button className="btn me-3 like-single-btn col-4 col-lg-2 ms-auto" onClick={clickFavourite}>
+                            <i className={isFavourite ? "fa-solid fa-heart" : "fa-regular fa-heart"}></i>
+                        </button>
                     </div>
                     <div className="col-12 col-xl-6"><span className="text-decoration-underline fw-bold">Height:</span> {store.singleCharacter.properties.height} cm</div>
                     <div className="col-12 col-xl-6"><span className="text-decoration-underline fw-bold">Weight:</span> {store.singleCharacter.properties.mass} Kg</div>
@@ -57,7 +80,7 @@ export const SingleCharacter = () =>{
                     <div className="col-12 col-xl-6"><span className="text-decoration-underline fw-bold">Birth:</span> {store.singleCharacter.properties.birth_year} </div>
                     <div className="col-12 col-xl-6"><span className="text-decoration-underline fw-bold">Home Planet:</span> {store.singlePlanet.properties.name}</div>
                     <div className="row justify-content-center pt-3 pt-lg-0">
-                        <button href="#" className="btn ms-3 return-btn" onClick={handleReturn}>Return</button>
+                        <button className="btn ms-3 return-btn" onClick={handleReturn}>Return</button>
                     </div>
                 </div>
             </div>

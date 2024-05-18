@@ -1,7 +1,6 @@
 const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
-            count: 0,
             characters: [],
             starships: [],
             planets: [],
@@ -10,7 +9,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             singleStarship: {},
             singlePlanet: {},
             singleVehicle: {},
-            pilotList: []
+            pilotList: [],
+            favourites: [],
+            count: 0
         },
         actions: {
             getCharacters: (page = 1) => {
@@ -125,7 +126,43 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             clearPilotsList: () => {
                 setStore({ pilotList: [] });
-            }
+            },
+            handleFavourite: (item) => {
+                const store = getStore();
+                const actions = getActions();
+            
+                const isFavourite = store.favourites.some(fav => 
+                    fav.id === item.id && 
+                    fav.name === item.name && 
+                    fav.category === item.category
+                );
+            
+                if (isFavourite) {
+                    const updatedFavourites = store.favourites.filter(fav => 
+                        !(fav.id === item.id && fav.name === item.name && fav.category === item.category)
+                    );
+                    setStore({
+                        favourites: updatedFavourites,
+                        count: store.count - 1
+                    });
+                } else {
+                    const updatedFavourites = [...store.favourites, item];
+                    setStore({
+                        favourites: updatedFavourites,
+                        count: store.count + 1
+                    });
+                }
+                actions.saveToLocalStore('favourites', store.favourites)
+            },
+            saveToLocalStore: (key, data) =>{
+                localStorage.setItem(key, JSON.stringify(data))
+            },
+            loadFromLocalStore: (key) => {
+                const data = localStorage.getItem(key);
+                setStore({favourites: data ? JSON.parse(data) : [],
+                          count: data ? JSON.parse(data).length : 0
+                })
+            }      
         }
     };
 };

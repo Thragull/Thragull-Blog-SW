@@ -19,6 +19,15 @@ export const SingleStarship = () => {
         navigate("/")
     }
 
+    const clickFavourite = () => {
+        const favourite = {
+          id: store.singleStarship.uid,
+          name: store.singleStarship.properties.name,
+          category: "starships"
+        }
+        actions.handleFavourite(favourite)
+    }
+
     useEffect(() => {
         actions.getSingleStarship(id)
             .then(() => {
@@ -54,7 +63,7 @@ export const SingleStarship = () => {
                 <div className="col-12 col-lg-8 row dataText mt-3 mt-lg-0">
                     <div className="col-12 row">
                         <h1 className="singleName text-center col-8 col-lg-10">{store.singleStarship.properties.name.toLowerCase()}</h1>
-                        <button href="#" className="btn me-3 like-single-btn col-4 col-lg-2 ms-auto"><i className="fa-regular fa-heart"></i></button>
+                        <button className="btn me-3 like-single-btn col-4 col-lg-2 ms-auto" onClick={clickFavourite}><i className="fa-regular fa-heart"></i></button>
                     </div>
                     <div className="col-12 col-xl-6"><span className="text-decoration-underline fw-bold">Model:</span> {store.singleStarship.properties.model}</div>
                     <div className="col-12 col-xl-6"><span className="text-decoration-underline fw-bold">Class:</span> {store.singleStarship.properties.starship_class}</div>
@@ -70,7 +79,7 @@ export const SingleStarship = () => {
                     <div className="col-12 col-xl-6"><span className="text-decoration-underline fw-bold">Sublight Speed:</span> {store.singleStarship.properties.MGLT}</div>
                     <div className="col-12"><span className="text-decoration-underline fw-bold">Pilots:</span> {store.pilotList.length > 0 ? store.pilotList.join(', ') : "unknown"}</div>
                     <div className="row justify-content-center pt-3 pt-lg-2">
-                        <button href="#" className="btn ms-3 return-btn" onClick={handleReturn}>Return</button>
+                        <button className="btn ms-3 return-btn" onClick={handleReturn}>Return</button>
                     </div>
                 </div>
             </div>

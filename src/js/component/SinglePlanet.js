@@ -26,6 +26,15 @@ export const SinglePlanet = () =>{
         navigate("/")
     }
 
+    const clickFavourite = () => {
+        const favourite = {
+          id: store.singlePlanet.uid,
+          name: store.singlePlanet.properties.name,
+          category: "planets"
+        }
+        actions.handleFavourite(favourite)
+    }
+
     if (dataLoaded){
         return(
             <div className="container row bgSingleCard rounded-5 py-lg-5 py-md-4 py-3">
@@ -37,7 +46,7 @@ export const SinglePlanet = () =>{
                 <div className="col-12 col-lg-8 row dataText mt-3 mt-lg-0">
                     <div className="col-12 row">
                         <h1 className="singleName text-center col-8 col-lg-10">{store.singlePlanet.properties.name.toLowerCase()}</h1>
-                        <button href="#" className="btn me-3 like-single-btn col-4 col-lg-2 ms-auto"><i className="fa-regular fa-heart"></i></button>
+                        <button className="btn me-3 like-single-btn col-4 col-lg-2 ms-auto" onClick={clickFavourite}><i className="fa-regular fa-heart"></i></button>
                     </div>
                     <div className="col-12 col-xl-6"><span className="text-decoration-underline fw-bold">Population:</span> {store.singlePlanet.properties.population}</div>
                     <div className="col-12 col-xl-6"><span className="text-decoration-underline fw-bold">Diameter:</span> {store.singlePlanet.properties.diameter} Km</div>
@@ -48,7 +57,7 @@ export const SinglePlanet = () =>{
                     <div className="col-12 col-xl-6"><span className="text-decoration-underline fw-bold">Gravity:</span> {store.singlePlanet.properties.gravity} </div>
                     <div className="col-12 col-xl-6"><span className="text-decoration-underline fw-bold">Surface Water:</span> {store.singlePlanet.properties.surface_water}</div>
                     <div className="row justify-content-center pt-3 pt-lg-0">
-                        <button href="#" className="btn ms-3 return-btn" onClick={handleReturn}>Return</button>
+                        <button className="btn ms-3 return-btn" onClick={handleReturn}>Return</button>
                     </div>
                 </div>
             </div>

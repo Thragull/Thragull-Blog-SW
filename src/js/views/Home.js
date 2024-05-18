@@ -1,15 +1,8 @@
-import React, {useState, useEffect, useContext} from "react";
-import { Context } from "../store/appContext"
+import React from "react";
 import "../../styles/home.css";
 import { Cards } from "../component/Cards";
 
 export const Home = () => {
-
-	const {store, actions} = useContext(Context)
-
-	useEffect(()=>{
-		
-	}, [])
 
 	return(
 		<div className="mt-5 pb-5 accordion accordion-flush">
