@@ -7,7 +7,7 @@ export const Card = (props) => {
   const navigate = useNavigate()
 
   const handleLearnMore = () => {
-    
+    navigate(`/${props.category}/${props.id}`)
   }
 
   return (
@@ -19,7 +19,7 @@ export const Card = (props) => {
         <div className="card-body rounded-bottom-4 d-flex flex-column justify-content-between">
           <h3 className="card-title">{props.name ? props.name : "Card Title"}</h3>
           <div className='row justify-content-between pt-3 mt-auto'>
-            <button href="#" className="btn ms-3 more-btn col-6">Learn more!</button>
+            <button href="#" className="btn ms-3 more-btn col-6" onClick={handleLearnMore}>Learn more!</button>
             <button href="#" className="btn me-3 like-btn col-2"><i className="fa-regular fa-heart"></i></button>
           </div>
         </div>

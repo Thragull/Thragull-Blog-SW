@@ -45,7 +45,10 @@ body{
     animation: flicker 0.5s
 }
 footer{
-    background-color: #0A1128
+    background-color: #0A1128;
+}
+.content{
+    padding-bottom: 4rem;
 }
 @media(max-width: 750px){
     .navbar-brand{

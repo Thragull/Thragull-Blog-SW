@@ -25,15 +25,17 @@ const Layout = () => {
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
 					<Navbar />
-					<Routes>
-						<Route path="/" element={<Home />} />
-						<Route path="/character/:id" element={<SingleCharacter />} />
-						<Route path="/starship/:id" element={<SingleStarship />} />
-						<Route path="/planet/:id" element={<SinglePlanet />} />
-						<Route path="/vehicle/:id" element={<SingleVehicle />} />
-						<Route path="*" element={<h1>Not found!</h1>} />
-						<Route path="/testing" element={<Cards />} />
-					</Routes>
+					<div className="content">
+						<Routes>
+							<Route path="/" element={<Home />} />
+							<Route path="/characters/:id" element={<SingleCharacter />} />
+							<Route path="/starships/:id" element={<SingleStarship />} />
+							<Route path="/planets/:id" element={<SinglePlanet />} />
+							<Route path="/vehicles/:id" element={<SingleVehicle />} />
+							<Route path="*" element={<h1>Not found!</h1>} />
+							<Route path="/testing" element={<Cards />} />
+						</Routes>
+					</div>
 					<Footer />
 				</ScrollToTop>
 			</BrowserRouter>
