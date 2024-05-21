@@ -13,6 +13,7 @@ export const SingleStarship = () => {
     const { store, actions } = useContext(Context);
     const [dataLoaded, setDataLoaded] = useState(false);
     const [pilotsLoaded, setPilotsLoaded] = useState(false);
+    const [isFavourite, setIsFavourite] = useState(false)
     const { id } = useParams();
     
     const handleReturn = () => {
@@ -26,6 +27,7 @@ export const SingleStarship = () => {
           category: "starships"
         }
         actions.handleFavourite(favourite)
+        isFavourite ? setIsFavourite(false) : setIsFavourite(true)
     }
 
     useEffect(() => {
@@ -41,6 +43,16 @@ export const SingleStarship = () => {
             .then(() => setPilotsLoaded(true))
             .catch(error => console.log(error));
     }, [id]);
+
+    useEffect(() => {
+        if (dataLoaded && pilotsLoaded){
+            setIsFavourite(store.favourites.some(fav => 
+                fav.id === store.singleStarship.uid && 
+                fav.name === store.singleStarship.properties.name && 
+                fav.category === "starships"
+            ))
+        } 
+    }, [store.favourites, dataLoaded, pilotsLoaded, store.singleStarship])
 
     useEffect(() => {
         return () => {

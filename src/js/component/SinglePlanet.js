@@ -12,6 +12,7 @@ export const SinglePlanet = () =>{
     const navigate = useNavigate();
     const {store, actions} = useContext(Context)
     const [dataLoaded, setDataLoaded] = useState(false)
+    const [isFavourite, setIsFavourite] = useState(false)
     const {id} = useParams()
     
     useEffect(()=>{
@@ -21,6 +22,16 @@ export const SinglePlanet = () =>{
                 .catch((error) => console.log(error))
         }
     }, [store.singlePlanet, dataLoaded])    
+    
+    useEffect(() => {
+        if (dataLoaded){
+            setIsFavourite(store.favourites.some(fav => 
+                fav.id === store.singlePlanet.uid && 
+                fav.name === store.singlePlanet.properties.name && 
+                fav.category === "planets"
+            ))
+        } 
+    }, [store.favourites, dataLoaded, store.singlePlanet])
     
     const handleReturn = () => {
         navigate("/")
@@ -33,6 +44,7 @@ export const SinglePlanet = () =>{
           category: "planets"
         }
         actions.handleFavourite(favourite)
+        isFavourite ? setIsFavourite(false) : setIsFavourite(true)
     }
 
     if (dataLoaded){
