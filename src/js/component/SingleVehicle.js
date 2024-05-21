@@ -13,11 +13,22 @@ export const SingleVehicle = () => {
     const { store, actions } = useContext(Context);
     const [dataLoaded, setDataLoaded] = useState(false);
     const [pilotsLoaded, setPilotsLoaded] = useState(false);
+    const [isFavourite, setIsFavourite] = useState(false)
     const { id } = useParams();
 
     const handleReturn = () => {
         navigate("/")
     }
+
+    useEffect(() => {
+        if (dataLoaded){
+            setIsFavourite(store.favourites.some(fav => 
+                fav.id === store.singleVehicle.uid && 
+                fav.name === store.singleVehicle.properties.name && 
+                fav.category === "vehicles"
+            ))
+        } 
+    }, [store.favourites, dataLoaded, store.singleVehicle])
 
     const clickFavourite = () => {
         const favourite = {
@@ -26,6 +37,7 @@ export const SingleVehicle = () => {
           category: "vehicles"
         }
         actions.handleFavourite(favourite)
+        isFavourite ? setIsFavourite(false) : setIsFavourite(true)
     }
 
     useEffect(() => {
