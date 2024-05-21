@@ -63,7 +63,9 @@ export const SingleStarship = () => {
                 <div className="col-12 col-lg-8 row dataText mt-3 mt-lg-0">
                     <div className="col-12 row">
                         <h1 className="singleName text-center col-8 col-lg-10">{store.singleStarship.properties.name.toLowerCase()}</h1>
-                        <button className="btn me-3 like-single-btn col-4 col-lg-2 ms-auto" onClick={clickFavourite}><i className="fa-regular fa-heart"></i></button>
+                        <button className="btn me-3 like-single-btn col-4 col-lg-2 ms-auto" onClick={clickFavourite}>
+                            <i className={isFavourite ? "fa-solid fa-heart" : "fa-regular fa-heart"}></i>
+                        </button>
                     </div>
                     <div className="col-12 col-xl-6"><span className="text-decoration-underline fw-bold">Model:</span> {store.singleStarship.properties.model}</div>
                     <div className="col-12 col-xl-6"><span className="text-decoration-underline fw-bold">Class:</span> {store.singleStarship.properties.starship_class}</div>
